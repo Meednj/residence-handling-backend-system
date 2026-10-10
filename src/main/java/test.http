@@ -1,0 +1,107 @@
+@BASEURL = http://localhost:1234/gresidence/residence
+
+POST {{BASEURL}}/apartments
+Content-Type: application/json
+
+{
+  "number": 301,
+  "floor": 3,
+  "rooms": 2,
+  "rent": 700,
+  "status": "AVAILABLE"
+}
+### Appartements
+###
+GET {{BASEURL}}/apartments
+
+###
+GET {{BASEURL}}/apartments/available
+
+###
+PUT {{BASEURL}}/apartments/1/status?status=OCCUPIED
+
+###
+GET {{BASEURL}}/apartments/number?number=101
+
+### Residents
+POST {{BASEURL}}/residents
+Content-Type: application/json
+
+{
+  "cin": "ZZ999999",
+  "nom": "Test",
+  "prenom": "Resident",
+  "email": "test@email.com",
+  "phone": "+212600000000"
+}
+
+###
+GET {{BASEURL}}/residents
+
+###
+GET {{BASEURL}}/residents/cin/AB123456
+
+### Contrats
+###
+POST {{BASEURL}}/contracts?residentId=1&apartmentId=1
+Content-Type: application/json
+
+{
+  "startDate": "2025-01-01",
+  "endDate": "2025-12-31",
+  "monthlyRent": 800
+}
+
+###
+GET {{BASEURL}}/contracts/active
+
+###
+PUT {{BASEURL}}/contracts/1/close
+
+### Payments
+POST {{BASEURL}}/payments?contractId=1
+Content-Type: application/json
+
+{
+  "amount": 800,
+  "dueDate": "2025-01-10"
+}
+
+###
+GET {{BASEURL}}/payments
+
+###
+GET {{BASEURL}}/payments/pending
+
+###
+PUT {{BASEURL}}/payments/1/paid
+
+### Plaintes
+POST {{BASEURL}}/complaints?residentId=1
+Content-Type: application/json
+
+{
+  "title": "Water problem",
+  "description": "No water since yesterday",
+  "status": "OPEN"
+}
+
+###
+GET {{BASEURL}}/complaints/resident/1
+
+###
+PUT {{BASEURL}}/complaints/1/status?status=RESOLVED
+
+### File
+POST {{BASEURL}}/files/log
+Content-Type: text/plain
+
+Bonjours tout le monde
+
+### Thread
+POST {{BASEURL}}/thread/run
+
+
+
+
+
